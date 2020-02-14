@@ -28,7 +28,6 @@ class App extends React.Component {
   }
 
   render () {
-    console.log(this.state.inventory)
     return (
       <div>
         <Header />
@@ -37,7 +36,9 @@ class App extends React.Component {
             inventory={this.state.inventory}
             getProducts={this.getProducts}
           />
-          <Form />
+          <Form
+            getProducts={this.getProducts}
+          />
         </div>
       </div>
     )

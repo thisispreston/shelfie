@@ -19,7 +19,7 @@ massive({
 
 //  ENDPOINTS
 app.get('/api/products', ctrl.getAll)
-// app.post('/api/products', ctrl.function)
+app.post('/api/product', ctrl.postProduct)
 // app.put('/api/products', ctrl.function)
 // app.delete('/api/products', ctrl.function)
 

@@ -1,12 +1,13 @@
 import React from 'react'
 import "./Form.css"
+import axios from 'axios'
 
 class Form extends React.Component {
   constructor (props) {
     super(props)
   
     this.state = {
-      imgUrl: '',
+      img: '',
       name: '',
       price: 0,
     }
@@ -17,7 +18,7 @@ class Form extends React.Component {
 // Handler Functions for Inputs
   handleChangeImg = (e) => {
     this.setState({
-      imgUrl: e.target.value
+      img: e.target.value
     })
   }
   handleChangeName = (e) => {
@@ -31,14 +32,17 @@ class Form extends React.Component {
     })
   }
 
-  postProduct () {
-    //POST 
-    this.props.getProducts()
+  postProduct (name, price, img) {
+    axios
+      .post('/api/product', { name, price, img })
+      .then(() => this.props.getProducts())
+      .catch(err => console.log(err))
   }
 
   clearInput = () => {
+    console.log(this.props)
     this.setState({
-      imgUrl: '',
+      img: '',
       name: '',
       price: 0,
     })
@@ -72,7 +76,7 @@ class Form extends React.Component {
             placeholder="Product Price"
           />
         </div>
-        <div>
+        <div className="buttons">
           <button
             className="cancelButton"
             onClick={() => {this.clearInput()}}
@@ -81,7 +85,7 @@ class Form extends React.Component {
           </button>
           <button
             className="addButton"
-            onClick={() => {this.getProducts()}}
+            onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}
           >
             Add to Inventory
           </button>
