@@ -22,6 +22,7 @@ class Form extends React.Component {
         img: this.props.img,
         name: this.props.name,
         price: this.props.price,
+        editingID: this.props.id,
       })
     }
   }
