@@ -55,16 +55,18 @@ class Form extends React.Component {
       img: '',
       name: '',
       price: 0,
+      editingID: null,
     })
   }
 
-  //TO BE INVOKED ON SAVE BUTTON
-  // editProduct (id, name, price, img) {
-  //   axios
-  //     .put(`/api/product/${id}`, { name, price, img })
-  //     .then(() => this.props.getProducts())
-  //     .catch(err => console.log(err))
-  // }
+  // TO BE INVOKED ON SAVE BUTTON
+  editProduct (id, name, price, img) {
+    axios
+      .put(`/api/product/${id}`, { name, price, img })
+      .then(() => this.props.getProducts())
+      .catch(err => console.log(err))
+    this.clearInput()
+  }
 
   render () {
     return (
@@ -98,7 +100,7 @@ class Form extends React.Component {
           >
             Cancel
           </button>
-          {this.state.editingID ? <button className="saveButton" >Save</button> : <button className="addButton" onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}>Add to Inventory</button>}
+          {this.state.editingID ? <button className="saveButton" onClick={() => this.editProduct()} >Save</button> : <button className="addButton" onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}>Add to Inventory</button>}
         </div>
     </div>
     )

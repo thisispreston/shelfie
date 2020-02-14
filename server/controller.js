@@ -28,4 +28,15 @@ module.exports = {
         console.log(err)
       })
   },
+  edit: (req, res, next) => {
+    const db = req.app.get('db')
+    const { params, query } = req
+
+    db.edit_product([params.id, query.desc])
+      .then( () => res.sendStatus(200))
+      .catch( err => {
+        res.status(500).send({errorMessage: 'Oops! Something went wrong. Our engineers have been informed!'})
+        console.log(err)
+      })
+  },
 }
