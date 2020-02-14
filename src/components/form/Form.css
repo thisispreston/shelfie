@@ -1,0 +1,16 @@
+.formInput {
+  height: 600px;
+  width: 400px;
+  background-color: #3AD886;
+  margin: 50px;
+}
+
+.inputImg {
+  height: 300px;
+  width: 300px;
+}
+
+input {
+  width: 250px;
+  height: 20px;
+}

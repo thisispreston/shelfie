@@ -1,16 +1,27 @@
 import React from 'react'
 import Product from '../product/Product'
-// import "./Dashboard.css"
+import "./Dashboard.css"
 
 const Dashboard = (props) => {
-// map over props to make a card for each <Product />
+  const { inventory } = props
+
+  let productList = inventory.map( e => {
+    return (
+      <Product
+        key={e.product_id}
+        img={e.img}
+        name={e.name}
+        price={e.price}
+      />
+    )
+  })
 
   return (
     <div>
       <h1>
         Dashboard
       </h1>
-      <Product />
+      {productList}
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-// import "./Header.css"
+import "./Header.css"
 
 const Header = (props) => {
   return (
-    <div>
+    <div className="header">
       <img src="https://i.pinimg.com/originals/62/9a/09/629a09e4fe7528f1caab1e77afdeb4f6.png" />
       <h1>
         SHELFIE

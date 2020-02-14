@@ -1,16 +1,21 @@
 import React from 'react'
-// import "./Product.css"
+import "./Product.css"
 
 const Product = (props) => {
 // props are the individual objexts for each product: name, price, imageUrl
+  const { img, name, price } = props
+
   return (
-    <div>
-      <img src={props.imageUrl} />
+    <div className="productCard">
+      <img
+        src={img}
+        className="productImg"
+      />
       <div>
-        Product Name: {props.name}
+        Product Name: {name}
       </div>
       <div>
-        Price: {props.price}
+        Price: {price}
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-// import "./Form.css"
+import "./Form.css"
 
 class Form extends React.Component {
   constructor (props) {
@@ -11,7 +11,7 @@ class Form extends React.Component {
       price: 0,
     }
 
-    // this.state.postProduct = this.state.postProduct.bind(this)
+    this.postProduct = this.postProduct.bind(this)
   }
 
 // Handler Functions for Inputs
@@ -31,22 +31,30 @@ class Form extends React.Component {
     })
   }
 
-  // postProduct () {
+  postProduct () {
+    //POST 
+    this.props.getProducts()
+  }
 
-  // }
-
-  // clearInput () {
-
-  // }
+  clearInput = () => {
+    this.setState({
+      imgUrl: '',
+      name: '',
+      price: 0,
+    })
+  }
 
   render () {
     return (
-      <div>
+      <div className="formInput">
         <h1>
           Form
         </h1>
-        <img src="https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg" />
-        <div className="formInput">
+        <div>
+          <img
+            src="https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg"
+            className="inputImg"
+          />
           <input
             className="imgUrlInput"
             onChange={this.handleChangeImg}
@@ -58,16 +66,23 @@ class Form extends React.Component {
             placeholder="Product Name"
           />
           <input
+            type='number'
             className="priceInput"
             onChange={this.handleChangePrice}
             placeholder="Product Price"
           />
         </div>
         <div>
-          <button className="cancelButton">
+          <button
+            className="cancelButton"
+            onClick={() => {this.clearInput()}}
+          >
             Cancel
           </button>
-          <button className="addButton">
+          <button
+            className="addButton"
+            onClick={() => {this.getProducts()}}
+          >
             Add to Inventory
           </button>
         </div>
