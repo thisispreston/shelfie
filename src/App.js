@@ -11,6 +11,7 @@ class App extends React.Component {
   
     this.state = {
       inventory: [],
+      editingProduct: [],
     }
 
   }
@@ -38,6 +39,7 @@ class App extends React.Component {
           />
           <Form
             getProducts={this.getProducts}
+            editingProduct={this.state.editingProduct}
           />
         </div>
       </div>

@@ -10,9 +10,20 @@ class Form extends React.Component {
       img: '',
       name: '',
       price: 0,
+      editingID: null,
     }
 
     this.postProduct = this.postProduct.bind(this)
+  }
+
+  componentDidUpdate(previousProps) {
+    if (previousProps !== this.props) {
+      this.setState({
+        img: this.props.img,
+        name: this.props.name,
+        price: this.props.price,
+      })
+    }
   }
 
 // Handler Functions for Inputs
@@ -40,13 +51,20 @@ class Form extends React.Component {
   }
 
   clearInput = () => {
-    console.log(this.props)
     this.setState({
       img: '',
       name: '',
       price: 0,
     })
   }
+
+  //TO BE INVOKED ON SAVE BUTTON
+  // editProduct (id, name, price, img) {
+  //   axios
+  //     .put(`/api/product/${id}`, { name, price, img })
+  //     .then(() => this.props.getProducts())
+  //     .catch(err => console.log(err))
+  // }
 
   render () {
     return (
@@ -55,7 +73,7 @@ class Form extends React.Component {
           Form
         </h1>
         <div>
-          {this.state.img ? <img src={this.state.img} className="inputImg"/> : <img src={'https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg'} className="inputImg"/>}
+          {this.state.img ? <img src={this.state.img} className="inputImg" alt='product' /> : <img src={'https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg'} className="inputImg" alt='product' />}
           <input
             className="imgUrlInput"
             onChange={this.handleChangeImg}
@@ -80,12 +98,7 @@ class Form extends React.Component {
           >
             Cancel
           </button>
-          <button
-            className="addButton"
-            onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}
-          >
-            Add to Inventory
-          </button>
+          {this.state.editingID ? <button className="saveButton" >Save</button> : <button className="addButton" onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}>Add to Inventory</button>}
         </div>
     </div>
     )
