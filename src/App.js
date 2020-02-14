@@ -28,6 +28,12 @@ class App extends React.Component {
     }).catch( (err) => console.log(err))
   }
 
+  chooseEdit = (id) => {
+    this.setState({
+      editingProduct: this.state.inventory.id
+    })
+  }
+
   render () {
     return (
       <div>
@@ -36,6 +42,7 @@ class App extends React.Component {
           <Dashboard
             inventory={this.state.inventory}
             getProducts={this.getProducts}
+            chooseEdit={this.chooseEdit}
           />
           <Form
             getProducts={this.getProducts}

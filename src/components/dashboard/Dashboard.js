@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
   }
 
   render () {
-    const { inventory } = this.props
+    const { inventory, chooseEdit } = this.props
   
     let productList = inventory.map( e => {
       return (
@@ -27,6 +27,7 @@ class Dashboard extends React.Component {
           name={e.name}
           price={e.price}
           delete={this.delete}
+          chooseEdit={chooseEdit}
         />
       )
     })

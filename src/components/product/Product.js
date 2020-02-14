@@ -3,7 +3,7 @@ import "./Product.css"
 
 const Product = (props) => {
 // props are the individual objexts for each product: name, price, imageUrl
-  const { id, img, name, price } = props
+  const { id, img, name, price, chooseEdit } = props
 
   return (
     <div className="productCard">
@@ -20,7 +20,9 @@ const Product = (props) => {
         >
           Delete
         </button>
-        <button>
+        <button
+          onClick={() => chooseEdit(id)}
+        >
           Edit
         </button>
       </div>

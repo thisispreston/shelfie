@@ -100,7 +100,7 @@ class Form extends React.Component {
           >
             Cancel
           </button>
-          {this.state.editingID ? <button className="saveButton" onClick={() => this.editProduct()} >Save</button> : <button className="addButton" onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}>Add to Inventory</button>}
+          {this.state.editingID ? <button className="saveButton" onClick={() => this.editProduct(this.props.editingProduct.product_id, this.state.name, this.state.price, this.state.img)} >Save</button> : <button className="addButton" onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}>Add to Inventory</button>}
         </div>
     </div>
     )

@@ -30,9 +30,10 @@ module.exports = {
   },
   edit: (req, res, next) => {
     const db = req.app.get('db')
-    const { params, query } = req
+    const { id } = req.params
+    const { name, price, img } = req.body
 
-    db.edit_product([params.id, query.desc])
+    db.edit_product([id, name, price, img])
       .then( () => res.sendStatus(200))
       .catch( err => {
         res.status(500).send({errorMessage: 'Oops! Something went wrong. Our engineers have been informed!'})
