@@ -3,6 +3,8 @@ import Product from '../product/Product'
 // import "./Dashboard.css"
 
 const Dashboard = (props) => {
+// map over props to make a card for each <Product />
+
   return (
     <div>
       <h1>

@@ -16,14 +16,16 @@ class App extends React.Component {
   }
 
   // getInventory = () => {
-    
+  //   this.setState({
+  //     inventory: [],
+  //   })
   // }
 
   render () {
     return (
       <div>
         <Header />
-        <Dashboard />
+        <Dashboard inventory={this.state.inventory} />
         <Form />
       </div>
     )

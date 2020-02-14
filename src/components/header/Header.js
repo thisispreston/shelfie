@@ -4,8 +4,9 @@ import React from 'react'
 const Header = (props) => {
   return (
     <div>
+      <img src="https://i.pinimg.com/originals/62/9a/09/629a09e4fe7528f1caab1e77afdeb4f6.png" />
       <h1>
-        Header
+        SHELFIE
       </h1>
     </div>
   )
