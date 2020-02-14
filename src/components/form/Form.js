@@ -55,10 +55,7 @@ class Form extends React.Component {
           Form
         </h1>
         <div>
-          <img
-            src="https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg"
-            className="inputImg"
-          />
+          {this.state.img ? <img src={this.state.img} className="inputImg"/> : <img src={'https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg'} className="inputImg"/>}
           <input
             className="imgUrlInput"
             onChange={this.handleChangeImg}

@@ -20,8 +20,8 @@ massive({
 //  ENDPOINTS
 app.get('/api/products', ctrl.getAll)
 app.post('/api/product', ctrl.postProduct)
+app.delete('/api/products/:id', ctrl.delete)
 // app.put('/api/products', ctrl.function)
-// app.delete('/api/products', ctrl.function)
 
 app.listen(SERVER_PORT, () =>
   console.log(`THE SERVER IS ON PORT ${SERVER_PORT}`)
