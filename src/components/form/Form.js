@@ -17,7 +17,7 @@ class Form extends React.Component {
   }
 
   componentDidUpdate(previousProps) {
-    if (previousProps !== this.props) {
+    if (this.props !== previousProps) {
       this.setState({
         img: this.props.img,
         name: this.props.name,
