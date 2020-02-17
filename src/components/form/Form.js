@@ -18,12 +18,14 @@ class Form extends React.Component {
 
   componentDidUpdate(previousProps) {
     if (this.props !== previousProps) {
-      this.setState({
-        img: this.props.img,
-        name: this.props.name,
-        price: this.props.price,
-        editingID: this.props.id,
-      })
+      if (this.editingID !== null) {
+        this.setState({
+          img: this.props.img,
+          name: this.props.name,
+          price: this.props.price,
+          editingID: this.props.id,
+        })
+      }
     }
   }
 
@@ -49,6 +51,7 @@ class Form extends React.Component {
       .post('/api/product', { name, price, img })
       .then(() => this.props.getProducts())
       .catch(err => console.log(err))
+    this.clearInput()
   }
 
   clearInput = () => {
@@ -76,22 +79,35 @@ class Form extends React.Component {
           Form
         </h1>
         <div>
-          {this.state.img ? <img src={this.state.img} className="inputImg" alt='product' /> : <img src={'https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg'} className="inputImg" alt='product' />}
+          {this.state.img ?
+            (<img 
+              src={this.state.img} 
+              className="inputImg"
+              alt='product' />
+            ) : (
+            <img 
+              src={'https://s3.amazonaws.com/lowres.cartoonstock.com/business-commerce-brands-brand_name-designer_clothes-designer_clothing-trendiness-cwln9760_low.jpg'}
+              className="inputImg"
+              alt='product'
+            />)}
           <input
             className="imgUrlInput"
             onChange={this.handleChangeImg}
             placeholder="Image URL"
+            value={this.state.img}
           />
           <input
             className="nameInput"
             onChange={this.handleChangeName}
             placeholder="Product Name"
+            value={this.state.name}
           />
           <input
             type='number'
             className="priceInput"
             onChange={this.handleChangePrice}
             placeholder="Product Price"
+            value={this.state.price}
           />
         </div>
         <div className="buttons">
@@ -101,7 +117,21 @@ class Form extends React.Component {
           >
             Cancel
           </button>
-          {this.state.editingID ? <button className="saveButton" onClick={() => this.editProduct(this.props.editingProduct.product_id, this.state.name, this.state.price, this.state.img)} >Save</button> : <button className="addButton" onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}>Add to Inventory</button>}
+          {this.state.editingID ?
+            (<button
+              className="saveButton"
+              onClick={() => this.editProduct(this.props.editingProduct.product_id, this.state.name, this.state.price, this.state.img)} 
+              >
+                Save
+              </button>
+            ) : (
+              <button
+              className="addButton"
+              onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}
+              >
+                Add to Inventory
+              </button>
+            )}
         </div>
     </div>
     )
