@@ -32,7 +32,8 @@ module.exports = {
     const db = req.app.get('db')
     const { id } = req.params
     const { name, price, img } = req.body
-
+    console.log(id, name, price, img)
+    
     db.edit_product([id, name, price, img])
       .then( () => res.sendStatus(200))
       .catch( err => {

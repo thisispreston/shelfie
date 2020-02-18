@@ -2,7 +2,7 @@ import React from 'react'
 import "./Product.css"
 
 const Product = (props) => {
-// props are the individual objexts for each product: name, price, imageUrl
+// props are the individual objects for each product: name, price, imageUrl
   const { id, img, name, price, chooseEdit } = props
 
   return (

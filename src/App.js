@@ -28,8 +28,14 @@ class App extends React.Component {
   }
 
   chooseEdit = (id) => {
+    let index = this.state.inventory.findIndex(el => {
+      if (el.product_id === id) {
+        return el
+      }
+    })
+    
     this.setState({
-      editingProduct: this.state.inventory.id
+      editingProduct: this.state.inventory[index]
     })
   }
 

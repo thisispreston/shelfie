@@ -10,24 +10,23 @@ class Form extends React.Component {
       img: '',
       name: '',
       price: 0,
-      editingID: null,
+      id: 0,
+      editingID: false,
     }
 
     this.postProduct = this.postProduct.bind(this)
   }
 
   componentDidUpdate(previousProps) {
-    if (this.props !== previousProps) {
-      if (this.editingID !== null) {
-        this.setState({
-          img: this.props.img,
-          name: this.props.name,
-          price: this.props.price,
-          editingID: this.props.id,
-        })
-      }
+    if (this.props !== previousProps)
+      this.setState({
+        img: this.props.editingProduct.img,
+        name: this.props.editingProduct.name,
+        price: this.props.editingProduct.price,
+        id: this.props.editingProduct.product_id,
+        editingID: true,
+      })
     }
-  }
 
 // Handler Functions for Inputs
   handleChangeImg = (e) => {
@@ -59,15 +58,19 @@ class Form extends React.Component {
       img: '',
       name: '',
       price: 0,
-      editingID: null,
+      id: 0,
+      editingID: false,
     })
   }
 
   // TO BE INVOKED ON SAVE BUTTON
   editProduct (id, name, price, img) {
+    console.log(id, name, price, img)
     axios
-      .put(`/api/product/${id}`, { name, price, img })
-      .then(() => this.props.getProducts())
+      .put(`/api/products/${id}`, { name, price, img })
+      .then(() => {
+        this.props.getProducts()
+      })
       .catch(err => console.log(err))
     this.clearInput()
   }
@@ -120,7 +123,7 @@ class Form extends React.Component {
           {this.state.editingID ?
             (<button
               className="saveButton"
-              onClick={() => this.editProduct(this.props.editingProduct.product_id, this.state.name, this.state.price, this.state.img)} 
+              onClick={() => this.editProduct(this.state.id, this.state.name, this.state.price, this.state.img)} 
               >
                 Save
               </button>
