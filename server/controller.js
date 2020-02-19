@@ -29,10 +29,11 @@ module.exports = {
       })
   },
   edit: (req, res, next) => {
-    const db = req.app.get('db')
     const { id } = req.params
+    // console.log(req.body)
     const { name, price, img } = req.body
-    console.log(id, name, price, img)
+    const db = req.app.get('db')
+    // console.log(id, name, price, img) THIS IS WORKING
     
     db.edit_product([id, name, price, img])
       .then( () => res.sendStatus(200))

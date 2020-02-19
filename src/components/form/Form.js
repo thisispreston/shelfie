@@ -65,12 +65,10 @@ class Form extends React.Component {
 
   // TO BE INVOKED ON SAVE BUTTON
   editProduct (id, name, price, img) {
-    console.log(id, name, price, img)
+    // console.log(id, name, price, img)
     axios
       .put(`/api/products/${id}`, { name, price, img })
-      .then(() => {
-        this.props.getProducts()
-      })
+      .then(() => this.props.getProducts())
       .catch(err => console.log(err))
     this.clearInput()
   }
