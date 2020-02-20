@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Header.css"
+import {Link} from 'react-router-dom'
 
 const Header = (props) => {
   return (
@@ -8,6 +9,12 @@ const Header = (props) => {
       <h1>
         SHELFIE
       </h1>
+      <Link to='/' >
+        Dashboard
+      </Link>
+      <Link to='/about' >
+        About
+      </Link>
     </div>
   )
 }

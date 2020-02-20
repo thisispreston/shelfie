@@ -53,8 +53,8 @@ class App extends React.Component {
           /> */}
           {/* <Form
             getProducts={this.getProducts}
-            editingProduct={this.state.editingProduct} */}
-          />
+            editingProduct={this.state.editingProduct}
+          /> */}
         </div>
       </div>
     )

@@ -37,7 +37,6 @@ class Dashboard extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     const { inventory, chooseEdit } = this.state
   
     let productList = inventory.map( e => {
