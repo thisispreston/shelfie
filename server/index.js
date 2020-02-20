@@ -7,22 +7,23 @@ const app = express();
 
 app.use(express.json())
 
-massive({
-  connectionString: CONNECTION_STRING,
-  ssl: {
-    rejectUnauthorized: false
-  }
-}).then(db => {
-  app.set("db", db)
-  console.log("DATABASE HAS CONNECTED")
-})
-
-//  ENDPOINTS
 app.get('/api/products', ctrl.getAll)
+app.get('/api/product/:id', ctrl.getOne)
 app.post('/api/product', ctrl.postProduct)
 app.delete('/api/products/:id', ctrl.delete)
 app.put('/api/products/:id', ctrl.edit)
 
-app.listen(SERVER_PORT, () =>
-  console.log(`THE SERVER IS ON PORT ${SERVER_PORT}`)
-)
+
+massive({
+    connectionString: CONNECTION_STRING,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  }).then(db => {
+    app.set("db", db)
+    console.log("DATABASE HAS CONNECTED")
+  app.listen(SERVER_PORT, () =>
+    console.log(`THE SERVER IS ON PORT ${SERVER_PORT}`)
+  )
+  })
+

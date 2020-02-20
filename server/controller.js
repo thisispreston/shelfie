@@ -9,6 +9,24 @@ module.exports = {
         console.log(err)
       })
   },
+  getOne: async(req, res, next) => {
+    let { id } = req.params
+    const db = req.app.get('db')
+
+    try{
+      let response = await db.get_one({id})
+      res.status(200).send(response)
+    }
+    catch(err){
+      res.status(500).send({errorMessage: 'Oops! Something went wrong. Our engineers have been informed!'})
+    }
+    //the curly brackets here and in sql make it more clear which is paired with which. Order doesn't matter this way.
+      // .then( products => res.status(200).send(products))
+      // .catch( err => {
+      //   res.status(500).send({errorMessage: 'Oops! Something went wrong. Our engineers have been informed!'})
+      //   console.log(err)
+      // })
+  },
   postProduct: (req, res, next) => {
     const { name, price, img } = req.body
     const db = req.app.get('db')

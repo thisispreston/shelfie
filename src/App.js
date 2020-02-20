@@ -4,28 +4,29 @@ import "./App.css"
 import Header from './components/header/Header'
 import Dashboard from './components/dashboard/Dashboard'
 import Form from './components/form/Form'
+import routes from './routes'
 
 class App extends React.Component {
   constructor (props) {
     super(props)
   
-    this.state = {
-      inventory: [],
-      editingProduct: [],
-    }
+    // this.state = {
+    //   inventory: [],
+    //   editingProduct: [],
+    // }
   }
 
-  componentDidMount () {
-    this.getProducts()
-  }
+  // componentDidMount () {
+  //   this.getProducts()
+  // }
   
-  getProducts = () => {
-    axios.get('/api/products').then( res => {
-      this.setState({ 
-        inventory: res.data
-      })
-    }).catch( (err) => console.log(err))
-  }
+  // getProducts = () => {
+  //   axios.get('/api/products').then( res => {
+  //     this.setState({ 
+  //       inventory: res.data
+  //     })
+  //   }).catch( (err) => console.log(err))
+  // }
 
   chooseEdit = (id) => {
     let index = this.state.inventory.findIndex(el => {
@@ -44,14 +45,15 @@ class App extends React.Component {
       <div>
         <Header />
         <div className="body">
-          <Dashboard
+          {routes}
+          {/* <Dashboard
             inventory={this.state.inventory}
             getProducts={this.getProducts}
             chooseEdit={this.chooseEdit}
-          />
-          <Form
+          /> */}
+          {/* <Form
             getProducts={this.getProducts}
-            editingProduct={this.state.editingProduct}
+            editingProduct={this.state.editingProduct} */}
           />
         </div>
       </div>

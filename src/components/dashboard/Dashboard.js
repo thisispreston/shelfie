@@ -6,6 +6,27 @@ import "./Dashboard.css"
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      inventory: [],
+      editingProduct: [],
+    }
+  }
+
+  componentDidMount () {
+    this.getProducts()
+  }
+
+  getProducts = () => {
+    axios.get('/api/products').then( res => {
+      this.setState({ 
+        inventory: res.data
+      })
+    }).catch( (err) => console.log(err))
+  }
+
+  toEditForm = (id) => {
+    this.props.history.push(`/edit-form/${id}`)
   }
 
   delete = (id) => {
@@ -16,7 +37,8 @@ class Dashboard extends React.Component {
   }
 
   render () {
-    const { inventory, chooseEdit } = this.props
+    console.log(this.props)
+    const { inventory, chooseEdit } = this.state
   
     let productList = inventory.map( e => {
       return (
@@ -27,7 +49,8 @@ class Dashboard extends React.Component {
           name={e.name}
           price={e.price}
           delete={this.delete}
-          chooseEdit={chooseEdit}
+          // chooseEdit={chooseEdit}
+          toEditForm={this.toEditForm}
         />
       )
     })
